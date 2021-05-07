@@ -1,0 +1,289 @@
+<html>
+	<head>
+	<!-- Bootstrap CSS -->
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+		<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+		<title>Airbnb Norway Predictor</title>
+	</head>
+	<body>
+	<!-- Java Script -->	
+		<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
+		
+		<!-- Navbar-->
+		<nav class="navbar navbar-dark bg-dark">
+			<span class="navbar-brand mb-0 h1">Airbnb Norway | Rent Price Predictor</span>
+		</nav>
+		<div class="container">
+			<br>
+			<!--Form-->
+			<form action = "{{url_for('predict')}}" method ="POST">
+				<fieldset>
+				<legend>Choose your summer stay</legend><br>
+				  <div class="card card-body" >
+					  <div class="form-group  row">						
+						<div class="col-sm-3">
+							<label for="city">City</label>
+							<select class="form-control" id="city"  name="city" required>							  			  											  
+							  <option value = "Oslo">Oslo</option>							 
+							  <option value = "Bergen">Bergen</option>
+							  <option value = "Trondheim">Trondheim</option>
+							  <option value = "Stavanger">Stavanger</option>
+							  <option value = "Stavanger">Sørum</option>
+							  <option value = "Drammen">Drammen</option>
+							  <option value = "Skien">Skien</option>
+							  <option value = "Kristiansand">Kristiansand</option>
+							  <option value = "Sandnes">Sandnes</option>
+							  <option value = "Tønsberg">Tønsberg</option>
+							  <script>
+								document.getElementById("city").value = "{{city}}";															  
+							  </script>
+							</select>
+					    </div>						
+						<div class="col-sm-3">
+							<label for="location">Location</label>
+							<select class="form-control" id="location"  name="location" required>  			 							  							
+							  <script>
+								var select = document.getElementById("location"),
+									arr =  ['Arna', 'Asker', 'Askøy', 'Aurskog',
+											'Aurskog-Høland', 'Aust-Agder', 'Bamble', 'Bergen',
+											'Bergen Municipality', 'Bergenhus', 'Bjørnafjorden', 'Bosberg',
+											'Brevik', 'Bruvik', 'Bærum', 'Central Stavanger', 'Dirdal',
+											'Drammen', 'Duken', 'Fana', 'Fet', 'Finnøy kommune', 'Flekkerøy',
+											'Forsand', 'Frafjord', 'Frogner', 'Frogner/Kløfta', 'Fusa',
+											'Fyllingsdalen', 'Færder', 'Færder kommune', 'Gamle Oslo', 'Gan',
+											'Gjerdrum', 'Gjesdal', 'Grefsen', 'Grim', 'Grünerløkka', 'Haus',
+											'Herre', 'Hjelmeland', 'Holmenkollen', 'Holmestrand', 'Hommersåk',
+											'Horten', 'Hospitalsløkkan', 'Hurum', 'Hvalstad', 'Hvasser',
+											'Hyggen', 'Høvåg', 'Idse', 'Indre Kviviga', 'Jørpeland',
+											'Klokkarstua', 'Klokkarstua ', 'Kristiansand', 'Kristiansand ',
+											'Kristiansand S', 'Krokstadelven', 'Kvadraturen', 'Laksevåg',
+											'Langangen', 'Levik', 'Lier', 'Lierskogen', 'Lillesand',
+											'Lillestrøm', 'Lonevåg', 'Lørenskog', 'Majorstuen', 'Malvik',
+											'Meland', 'Melhus', 'NO', 'Nes', 'Nesbru', 'Nesodden',
+											'Nesoddtangen ', 'Nittedal', 'Nordre Aker', 'Nordstrand',
+											'Notteroy', 'Nøtterøy', 'Oslo', 'Oslo kommune', 'Osterøy',
+											'Porsgrunn', 'Randaberg', 'Randesund', 'Re', 'Rennesøy', 'Rye',
+											'Rælingen', 'Røyken', 'Sagene', 'Saksvik', 'Sandefjord',
+											'Sandefjord ', 'Sandnes', 'Sandvika', 'Sentrum', 'Siljan kommune',
+											'Sinnes', 'Sirdal', 'Sirdal kommune', 'Skallestad', 'Skedsmo',
+											'Skedsmokorset', 'Skien', 'Skjetten', 'Skoppum', 'Sola',
+											'Songdalen kommune', 'St. Hanshaugen', 'Stabekk', 'Stathelle ',
+											'Stavanger', 'Stavanger ', 'Stavanger Municipality',
+											'Steinbrøttet 12', 'Stokke', 'Storhaug', 'Strand', 'Strusshamn',
+											'Strømmen', 'Svelvik', 'Søgne', 'Søndre Nordstrand', 'Søreidgrend',
+											'Sørum', 'Talgje', 'Tau', 'Tau ', 'Telemark', 'Tjøme', 'Tjørhom',
+											'Trondheim', 'Trondheim Municipality', 'Tveit', 'Tønsberg',
+											'Ullern', 'Vennesla', 'Vennesla ', 'Vestfossen ', 'Vollen',
+											'Vågsbygd', 'Ytrebygda','Åmøy',
+											'Årstad', 'Åsane', 'Østensjø', 'Øvre Eiker', 'Øvrebø', 'Øyslebø'];
+
+									for(var i = 0; i < arr.length; i++)
+									{
+										var option = document.createElement("OPTION"),
+											txt = document.createTextNode(arr[i]);
+										option.appendChild(txt);
+										option.setAttribute("value",arr[i]);
+										select.insertBefore(option,select.lastChild);
+									}													  
+								</script>								
+								<script>
+									document.getElementById("location").value = "{{location}}";															  
+								</script>								
+							</select>
+						</div>
+						<div class="col-sm-3">
+							<label for="property_type">Property Type</label>
+							<select class="form-control" id="property_type"  name="property_type" required>  			 							  							
+							  <script>
+								var select = document.getElementById("property_type"),
+									arr =  ['Boat', 'Camper/RV', 'Earth house', 'Entire apartment',
+											'Entire bungalow', 'Entire cabin', 'Entire condominium',
+											'Entire cottage', 'Entire guest suite', 'Entire guesthouse',
+											'Entire house', 'Entire loft', 'Entire place', 'Entire townhouse',
+											'Entire villa', 'Farm stay', 'Hostel room', 'Hotel room', 'Hut',
+											'Island', 'Private room', 'Room', 'Shared room', 'Tiny house',
+											'Tipi', 'Treehouse', 'Yurt'];
+
+									for(var i = 0; i < arr.length; i++)
+									{
+										var option = document.createElement("OPTION"),
+											txt = document.createTextNode(arr[i]);
+										option.appendChild(txt);
+										option.setAttribute("value",arr[i]);
+										select.insertBefore(option,select.lastChild);
+									}													  
+								</script>								
+								<script>
+									document.getElementById("property_type").value = "{{property_type}}";															  
+								</script>								
+							</select>
+						</div>									
+						<div class="col-sm-3">
+							<label for="latitude">Latitude</label>							
+							<input type="number" step="any" class="form-control" id="latitude" name="latitude" required>
+							<script>
+								document.getElementById("latitude").value = "{{latitude}}";															  
+							</script>
+						</div>	
+						<div class="col-sm-3">
+							<label for="longitude">Longitude</label>
+							<input type="number" step="any" class="form-control" id="longitude" name="longitude" required>
+							<script>
+								document.getElementById("longitude").value = "{{longitude}}";															  
+							</script>
+						</div>						
+						<div class="col-sm-3">
+							<label for="rating">Rating</label>
+							<input type="number" max="5" min="0" step="any" class="form-control" id="rating" name="rating" required>
+							<script>
+								document.getElementById("rating").value = "{{rating}}";															  
+							</script>
+						</div>
+						<div class="col-sm-3">
+							<label for="reviews">Reviews</label>
+							<input type="number" class="form-control" id="reviews" name="reviews" required>
+							<script>
+								document.getElementById("reviews").value = "{{reviews}}";															  
+							</script>
+						</div>
+						<div class="col-sm-3">
+							<label for="guests">Guests</label>
+							<input type="number" class="form-control" id="guests" name="guests" required>
+							<script>
+								document.getElementById("guests").value = "{{guests}}";															  
+							</script>
+						</div>							
+						<div class="col-sm-3">
+							<label for="studio">Studio</label>
+							<select class="form-control" id="studio"  name="studio" required>	
+							  <option value = "0.0">No</option>									  	
+							  <option value = "1.0">Yes</option>
+							  <script>
+								document.getElementById("studio").value = "{{studio}}";															  
+							  </script>								  		  
+							</select>
+					    </div>
+						<div class="col-sm-3">
+							<label for="bedrooms">Bedrooms</label>
+							<input type="number" class="form-control" id="bedrooms" name="bedrooms" required>
+							<script>
+								document.getElementById("bedrooms").value = "{{bedrooms}}";															  
+							</script>	
+						</div>
+						<div class="col-sm-3">
+							<label for="beds">Beds</label>
+							<input type="number" class="form-control" id="beds" name="beds" required>
+							<script>
+								document.getElementById("beds").value = "{{beds}}";															  
+							</script>
+						</div>
+						<div class="col-sm-3">
+							<label for="baths">Baths</label>
+							<input type="number" class="form-control" id="baths" name="baths" required>
+							<script>
+								document.getElementById("baths").value = "{{baths}}";															  
+							</script>
+						</div>
+						<div class="col-sm-3">
+							<label for="shared_bath">Shared Bath</label>
+							<select class="form-control" id="shared_bath"  name="shared_bath" required>							  	
+							  <option value = "1.0">Shared</option>		
+							  <option value = "0.0">Private</option>
+							  <script>
+								document.getElementById("shared_bath").value = "{{shared_bath}}";															  
+							  </script>				  
+							</select>
+					    </div>
+						<div class="col-sm-3">
+							<label for="kitchen">Kitchen</label>
+							<select class="form-control" id="kitchen"  name="kitchen" required>							  	
+							  <option value = "1.0">Include</option>		
+							  <option value = "0.0">Exclude</option>
+							  <script>
+								document.getElementById("kitchen").value = "{{kitchen}}";															  
+							  </script>				  
+							</select>
+					    </div>
+						<div class="col-sm-3">
+							<label for="wifi">Wifi</label>
+							<select class="form-control" id="wifi"  name="wifi" required>							  	
+							  <option value = "1.0">Include</option>		
+							  <option value = "0.0">Exclude</option>
+							  <script>
+								document.getElementById("wifi").value = "{{wifi}}";															  
+							  </script>				  
+							</select>
+					    </div>
+						<div class="col-sm-3">
+							<label for="washer">Washer</label>
+							<select class="form-control" id="washer"  name="washer" required>							  	
+							  <option value = "1.0">Include</option>		
+							  <option value = "0.0">Exclude</option>
+							  <script>
+								document.getElementById("washer").value = "{{washer}}";															  
+							  </script>				  
+							</select>
+					    </div>
+						<div class="col-sm-3">
+							<label for="tv">TV</label>
+							<select class="form-control" id="tv"  name="tv" required>							  	
+							  <option value = "1.0">Include</option>		
+							  <option value = "0.0">Exclude</option>
+							  <script>
+								document.getElementById("tv").value = "{{tv}}";															  
+							  </script>					  
+							</select>
+					    </div>
+						<div class="col-sm-3">
+							<label for="parking">Parking</label>
+							<select class="form-control" id="parking"  name="parking" required>							  	
+							  <option value = "0.0">Exclude</option>	
+							  <option value = "1.0">Include</option>
+							  <script>
+								document.getElementById("parking").value = "{{parking}}";															  
+							  </script>								  			  
+							</select>
+					    </div>
+						<div class="col-sm-3">
+							<label for="refrigerator">Refrigerator</label>
+							<select class="form-control" id="refrigerator"  name="refrigerator" required>							  
+							  <option value = "1.0">Include</option>		
+							  <option value = "0.0">Exclude</option>	
+							  <script>
+								document.getElementById("refrigerator").value = "{{refrigerator}}";															  
+							  </script>			  
+							</select>
+					    </div>									 					  
+					  </div>					  
+					  <br>
+					  <div class="form-group">
+						<input class="btn btn-primary" type="submit" name="prediction" value="Predict">
+						<input class="btn btn-primary" type="submit" name="history" value="History">						
+					  </div>					  
+					  <!--Prediction Result-->
+					  <div id ="result">
+							<p style="color:rgb(0, 26, 255)"><b>{{result}}</b></p>
+							<p style="color:rgb(0, 26, 255)"><b>{{entry_00}}</b></p>
+							<p style="color:rgb(0, 26, 255)"><b>{{entry_01}}</b></p>
+							<p style="color:rgb(0, 26, 255)"><b>{{entry_02}}</b></p>
+							<p style="color:rgb(0, 26, 255)"><b>{{entry_03}}</b></p>
+							<p style="color:rgb(0, 26, 255)"><b>{{entry_04}}</b></p>
+							<p style="color:rgb(0, 26, 255)"><b>{{entry_05}}</b></p>	
+							<p style="color:rgb(0, 26, 255)"><b>{{entry_06}}</b></p>
+							<p style="color:rgb(0, 26, 255)"><b>{{entry_07}}</b></p>
+							<p style="color:rgb(0, 26, 255)"><b>{{entry_08}}</b></p>
+							<p style="color:rgb(0, 26, 255)"><b>{{entry_09}}</b></p>								
+					 </div>
+				     </div>
+			 </fieldset>
+			</form>	
+			
+		</div>
+		
+	</body>
+</html>
